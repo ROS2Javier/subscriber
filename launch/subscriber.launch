@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="instance" default="roselito"/>
+  <arg name="standalone" default="false"/>
+
+  <node pkg="rclcpp_components" exec="component_container" name="container" namespace="$(var instance)" if="$(var standalone)"/>
+
+  <load_composable_node target="$(var instance)/container">
+    <composable_node pkg="subscriber" plugin="subscriber::Subscriber" name="subscriber" namespace="$(var instance)"/>
+  </load_composable_node>
+</launch>
